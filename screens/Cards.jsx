@@ -390,7 +390,7 @@ export default () => {
   if (loading && !data) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator />
+        <ActivityIndicator color={"#e53d36"} />
       </View>
     );
   }
@@ -449,6 +449,7 @@ export default () => {
               />
             )}
             <Animated.FlatList
+              keyExtractor={(item, index) => item.key}
               disableVirtualization={true}
               disableIntervalMomentum={true}
               initialNumToRender={10}
@@ -464,7 +465,7 @@ export default () => {
                 [{ nativeEvent: { contentOffset: { x: scrollX } } }],
                 { useNativeDriver: true }
               )}
-              keyExtractor={(item) => item.id.toString()}
+              
               renderItem={renderItem}
               onEndReached={() => handleLoadMore("end")}
               onEndReachedThreshold={1}
@@ -487,55 +488,6 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 18,
     fontWeight: "bold",
-  },
-  centeredView: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    paddingTop: Dimensions.get("window").height,
-    position: "absolute",
-    bottom: 0,
-    alignSelf: "center",
-  },
-  modalView: {
-    backgroundColor: "#ffffff",
-    borderBottomColor: "#ffffff",
-    padding: 35,
-    borderTopLeftRadius: 26,
-    borderTopRightRadius: 26,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    width: "100%",
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
   },
   input: {
     height: 40,
